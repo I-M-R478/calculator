@@ -1,4 +1,5 @@
 import math
+import ast
 
 class Calculator:
     def add(self, num1, num2):
@@ -18,16 +19,15 @@ class Calculator:
     def square_root(self, num):
         if num < 0:
             return "Error: Negative value"
-        return num ** 0.5
+        return math.sqrt(num)
 
     def exponentiate(self, base, exponent):
-        return base ** exponent
+        return math.pow(base ** exponent)
 
     def logarithm(self, num, base=10):
-        try:
-            return math.log(num, base)
-        except ValueError:
-            return "Error: Invalid input for logarithm"
+        if num <= 0 or base <= 0:
+            return "Error: Invalid input for logarithm
+        return math.log(num, base)    
 
     def factorial(self, num):
         if num < 0:
@@ -48,7 +48,7 @@ class Calculator:
 
     def calculate(self, expression):
         try:
-            result = eval(expression)
+            result = ast.literal_eval(expression)
             return result
         except ZeroDivisionError:
             return "Error: Division by zero"
